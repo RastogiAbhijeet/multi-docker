@@ -8,7 +8,7 @@ before_install:
 script:
   - docker run lolistan/react-test npm test -- --coverage
 
-after-success:
+after_success:
   - docker build -t lolistan/multi-docker-client ./client
   - docker build -t lolistan/multi-docker-nginx ./nginx
   - docker build -t lolistan/multi-docker-server ./server
