@@ -1,0 +1,26 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t lolistan/react-test -f ./client/Dockerfile.dev ./client
+
+scripts:
+  - docker run lolistan/react-test -it npm test -- --coverage
+
+after-success:
+  - docker build -t lolistan/multi-docker-client ./client
+  - docker build -t lolistan/multi-docker-nginx ./nginx
+  - docker build -t lolistan/multi-docker-server ./server
+  - docker build -t lolistan/multi-docker-worker ./worker
+
+  #login in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Push images to docker hub
+  - docker push lolistan/multi-docker-client
+  - docker push lolistan/multi-docker-server
+  - docker push lolistan/multi-docker-nginx
+  - docker push lolistan/multi-docker-worker
+
+  
