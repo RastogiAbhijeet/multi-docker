@@ -1,0 +1,17 @@
+{
+  "name": "docker_fibonnaci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^1.19.0",
+    "redis": "^2.8.0"
+  }
+}
