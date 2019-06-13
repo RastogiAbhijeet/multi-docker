@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "worker",
+      "image": "lolistan/multi-docker-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "client",
+      "image": "lolistan/multi-docker-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "lolistan/multi-docker-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "lolistan/multi-docker-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}
