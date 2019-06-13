@@ -33,7 +33,7 @@ deploy:
   region: us-east-1
   app: multi-docker
   env: docker-env
-  bucket: elasticbeanstalk-us-east-1-416901336476
+  bucket_name: elasticbeanstalk-us-east-1-416901336476
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
