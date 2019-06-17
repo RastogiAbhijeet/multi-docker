@@ -7,6 +7,7 @@ import Fib from "./Fib";
 function App() {
   return (
     <BrowserRouter>
+      <h1>Fib Calculator</h1>
       <div className="App">
         <Link to="/">Home</Link>
         <Link to="/otherpage">otherPage</Link>
