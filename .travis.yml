@@ -10,32 +10,32 @@ before_install:
 script:
   - docker run lolistan/react-test npm test -- --coverage
 
-# after_success:
-#   - docker build -t lolistan/multi-docker-client ./client
-#   - docker build -t lolistan/multi-docker-nginx ./nginx
-#   - docker build -t lolistan/multi-docker-server ./server
-#   - docker build -t lolistan/multi-docker-worker ./worker
+after_success:
+  - docker build -t lolistan/multi-docker-client ./client
+  - docker build -t lolistan/multi-docker-nginx ./nginx
+  - docker build -t lolistan/multi-docker-server ./server
+  - docker build -t lolistan/multi-docker-worker ./worker
 
-#   #login in to the docker CLI
-#   # we have used the below will pipe in the password of docker hub in to the docker login command via stdin :)
-#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #login in to the docker CLI
+  # we have used the below will pipe in the password of docker hub in to the docker login command via stdin :)
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-#   # Push images to docker hub
-#   - docker push lolistan/multi-docker-client
-#   - docker push lolistan/multi-docker-server
-#   - docker push lolistan/multi-docker-nginx
-#   - docker push lolistan/multi-docker-worker
+  # Push images to docker hub
+  - docker push lolistan/multi-docker-client
+  - docker push lolistan/multi-docker-server
+  - docker push lolistan/multi-docker-nginx
+  - docker push lolistan/multi-docker-worker
 
-#   # we need to send the docker run aws json file to the beanstalk to get it deployed.
+  # we need to send the docker run aws json file to the beanstalk to get it deployed.
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: us-east-1
-#   app: multi-docker
-#   env: docker-env
-#   bucket_name: elasticbeanstalk-us-east-1-416901336476
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: 
-#     secure: $AWS_SECRET_KEY
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: application
+  env: Application-env
+  bucket_name: elasticbeanstalk-us-east-1-416901336476
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: $AWS_SECRET_KEY
