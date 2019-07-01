@@ -18,7 +18,7 @@ before-install:
   - docker build -t lolistan/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run lolistan/react-test npm run test -- --coverage
+  - docker run lolistan/react-test npm test -- --coverage
 
 deploy:
   provider: script
