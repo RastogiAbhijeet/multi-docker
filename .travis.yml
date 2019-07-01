@@ -16,6 +16,7 @@ before-install:
   # - gcloud container clusters get-credentials fib-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t lolistan/react-test -f ./client/Dockerfile.dev ./client
+  - docker images -a
 
 script:
   - docker run lolistan/react-test npm test -- --coverage
