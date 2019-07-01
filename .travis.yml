@@ -16,7 +16,7 @@ before-install:
   - gcloud config set project snappy-byway-245300
   - gcloud config set compute/zone us-central1-a
   - gcloud container clusters get-credentials fib-cluster
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t lolistan/react-test -f ./client/Dockerfile.dev ./client
 
 script:
